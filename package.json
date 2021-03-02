@@ -1,0 +1,22 @@
+{
+  "name": "s",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guiit/survey_back-end.git"
+  },
+  "author": "guilherme",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/guiit/survey_back-end/issues"
+  },
+  "homepage": "https://github.com/guiit/survey_back-end#readme",
+  "dependencies": {
+    "git-commit-msg-linter": "^3.0.0"
+  }
+}
