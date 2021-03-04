@@ -1,6 +1,10 @@
 {
-  "extends": "standard-with-typescript",
+  "extends": "pretty",
   "parserOptions": {
     "project": "./tsconfig.json"
+  },
+  "rules": {
+     "no-console": "warn",
+    "camelcase": "off",
   }
 }
