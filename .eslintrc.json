@@ -1,10 +1,18 @@
 {
-  "extends": "pretty",
+  
+  "extends": [
+    "prettier"
+  ],
   "parserOptions": {
-    "project": "./tsconfig.json"
+    "project": "./tsconfig.json",
+    "sourceType": "module",
+    "ecmaVersion": 2020,
+    "ecmaFeatures": {
+    "experimentalObjectRestSpread": true
   },
   "rules": {
      "no-console": "warn",
-    "camelcase": "off",
+     "camelcase": "off"
   }
+}
 }
