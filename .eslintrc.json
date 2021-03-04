@@ -3,6 +3,7 @@
   "extends": [
     "prettier"
   ],
+  "parser":"babel-eslint",
   "parserOptions": {
     "project": "./tsconfig.json",
     "sourceType": "module",
