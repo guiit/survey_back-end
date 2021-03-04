@@ -1,6 +1,19 @@
 {
-  "extends": "standard-with-typescript",
+  
+  "extends": [
+    "prettier"
+  ],
+  "parser":"babel-eslint",
   "parserOptions": {
-    "project": "./tsconfig.json"
+    "project": "./tsconfig.json",
+    "sourceType": "module",
+    "ecmaVersion": 2020,
+    "ecmaFeatures": {
+    "experimentalObjectRestSpread": true
+  },
+  "rules": {
+     "no-console": "warn",
+     "camelcase": "off"
   }
+}
 }
