@@ -8,7 +8,7 @@ interface SutTypes {
   emailValidatorStub: EmailValidator;
 }
 
-const makeSut = () => {
+const makeSut = (): SutTypes => {
   class EmailValidatorStub implements EmailValidator {
     isValid(email: string): boolean {
       return true;

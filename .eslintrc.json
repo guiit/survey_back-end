@@ -1,20 +1,22 @@
 {
-  
+  "root": true,
+  "parser": "@typescript-eslint/parser",
   "extends": [
-    "prettier"
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
-  "parser":"@typescript-eslint/parser",
+  "rules": {
+    "no-console": 1,
+     "camelcase": "off",
+     "@typescript-eslint/no-explicit-any": "off",
+     "@typescript-eslint/no-unused-vars": "off"
+   
+  },
   "parserOptions": {
-    "requireConfigFile": false,
     "project": "./tsconfig.json",
     "sourceType": "module",
-    "ecmaVersion": 2020,
-    "ecmaFeatures": {
-    "experimentalObjectRestSpread": true
-  },
-  "rules": {
-     "no-console": "warn",
-     "camelcase": "off"
+    "ecmaVersion": 2020
   }
-}
+
 }
