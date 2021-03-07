@@ -20,7 +20,7 @@ const makeSut = (): SutTypes => {
 };
 
 describe('Signup Controller', () => {
-  test('should return 400 if no name is provided', () => {
+  test('Should return 400 if no name is provided', () => {
     const { sut } = makeSut();
     const httpRequest = {
       body: {
@@ -34,7 +34,7 @@ describe('Signup Controller', () => {
     expect(httpResponse.statusCode).toBe(400);
     expect(httpResponse.body).toEqual(new MissingParamError('name'));
   });
-  test('should return 400 if no email is provided', () => {
+  test('Should return 400 if no email is provided', () => {
     const { sut } = makeSut();
     const httpRequest = {
       body: {
@@ -47,7 +47,7 @@ describe('Signup Controller', () => {
     expect(httpResponse.statusCode).toBe(400);
     expect(httpResponse.body).toEqual(new MissingParamError('email'));
   });
-  test('should return 400 if no password is provided', () => {
+  test('Should return 400 if no password is provided', () => {
     const { sut } = makeSut();
     const httpRequest = {
       body: {
@@ -75,7 +75,7 @@ describe('Signup Controller', () => {
       new MissingParamError('passwordConfirmation')
     );
   });
-  test('should return 400 if the email is invalid', () => {
+  test('Should return 400 if the email is invalid', () => {
     const { sut, emailValidatorStub } = makeSut();
     jest.spyOn(emailValidatorStub, 'isValid').mockReturnValueOnce(false);
     const httpRequest = {
@@ -89,5 +89,20 @@ describe('Signup Controller', () => {
     const httpResponse = sut.handle(httpRequest);
     expect(httpResponse.statusCode).toBe(400);
     expect(httpResponse.body).toEqual(new InvalidParamError('email'));
+  });
+
+  test('Should call EmailValidator with a correct email', () => {
+    const { sut, emailValidatorStub } = makeSut();
+    const isValidSpy = jest.spyOn(emailValidatorStub, 'isValid');
+    const httpRequest = {
+      body: {
+        name: 'any_name',
+        email: 'invalid_email@email',
+        password: '123',
+        passwordConfirmation: '123'
+      }
+    };
+    sut.handle(httpRequest);
+    expect(isValidSpy).toHaveBeenCalledWith('invalid_email@email');
   });
 });
