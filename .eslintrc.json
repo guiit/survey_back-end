@@ -3,7 +3,7 @@
   "extends": [
     "prettier"
   ],
-  "parser":"@babel/eslint-parser",
+  "parser":"@typescript-eslint/parser",
   "parserOptions": {
     "requireConfigFile": false,
     "project": "./tsconfig.json",
@@ -16,6 +16,5 @@
      "no-console": "warn",
      "camelcase": "off"
   }
-},
-"plugins": ["@babel"]
+}
 }
