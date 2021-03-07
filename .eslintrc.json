@@ -3,8 +3,9 @@
   "extends": [
     "prettier"
   ],
-  "parser":"babel-eslint",
+  "parser":"@typescript-eslint/parser",
   "parserOptions": {
+    "requireConfigFile": false,
     "project": "./tsconfig.json",
     "sourceType": "module",
     "ecmaVersion": 2020,
