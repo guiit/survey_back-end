@@ -8,10 +8,10 @@ const makeAddAcountStub = () => {
   class AddAccountStub implements AddAcount {
     add(account: AddAccountModel): AccountModel {
       const fakeAccount = {
-        id: 'any',
-        name: 'any',
-        email: 'any',
-        password: 'any'
+        id: 'valid',
+        name: 'valid',
+        email: 'valid',
+        password: 'valid'
       };
       return fakeAccount;
     }
@@ -185,6 +185,48 @@ describe('Signup Controller', () => {
       name: 'any_name',
       email: 'invalid_email@email',
       password: '123'
+    });
+  });
+
+  test('Should return 500 if addAcount throws an exception', () => {
+    const { sut, addAccountStub } = makeSut();
+
+    jest.spyOn(addAccountStub, 'add').mockImplementation(() => {
+      throw new ServerError();
+    });
+
+    const httpRequest = {
+      body: {
+        name: 'any_name',
+        email: 'invalid_email@email',
+        password: '123',
+        passwordConfirmation: '123'
+      }
+    };
+    const httpResponse = sut.handle(httpRequest);
+    expect(httpResponse.statusCode).toBe(500);
+    expect(httpResponse.body).toEqual(new ServerError());
+  });
+
+  test('Should return 200 if data provided is correct', () => {
+    const { sut } = makeSut();
+
+    const httpRequest = {
+      body: {
+        id: 'valid',
+        name: 'valid',
+        email: 'valid',
+        password: 'valid',
+        passwordConfirmation: 'valid'
+      }
+    };
+    const httpResponse = sut.handle(httpRequest);
+    expect(httpResponse.statusCode).toBe(200);
+    expect(httpResponse.body).toEqual({
+      id: 'valid',
+      name: 'valid',
+      email: 'valid',
+      password: 'valid'
     });
   });
 });
