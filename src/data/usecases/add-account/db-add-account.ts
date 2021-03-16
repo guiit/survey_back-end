@@ -5,7 +5,7 @@ import {
 } from '../../../domain/usercases/add-account';
 import { Encrypter } from '../protocols/encrypter';
 
-export class DbAddAcount implements AddAccount {
+export class DbAddAccount implements AddAccount {
   private readonly encrypter: Encrypter;
   constructor(encrypter: Encrypter) {
     this.encrypter = encrypter;
