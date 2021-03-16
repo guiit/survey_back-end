@@ -6,13 +6,13 @@ import {
   HttpRequest,
   HttpResponse
 } from '../protocols';
-import { AddAcount } from '../../domain/usercases/add-account';
+import { AddAccount } from '../../domain/usercases/add-account';
 
 export class SignupController implements Controller {
   private readonly emailValidator: EmailValidator;
-  private readonly account: AddAcount;
+  private readonly account: AddAccount;
 
-  constructor(emailValidator: EmailValidator, account: AddAcount) {
+  constructor(emailValidator: EmailValidator, account: AddAccount) {
     this.emailValidator = emailValidator;
     this.account = account;
   }
