@@ -1,11 +1,14 @@
 import { SignupController } from './signup';
 import { InvalidParamError, MissingParamError, ServerError } from '../errors';
 import { EmailValidator } from '../protocols';
-import { AddAccountModel, AddAcount } from '../../domain/usercases/add-account';
+import {
+  AddAccountModel,
+  AddAccount
+} from '../../domain/usercases/add-account';
 import { AccountModel } from '../../domain/models/account';
 
-const makeAddAcountStub = () => {
-  class AddAccountStub implements AddAcount {
+const makeAddAccountStub = () => {
+  class AddAccountStub implements AddAccount {
     async add(account: AddAccountModel): Promise<AccountModel> {
       const fakeAccount = {
         id: 'valid',
@@ -32,12 +35,12 @@ const makeEmailValidationStub = () => {
 interface SutTypes {
   sut: SignupController;
   emailValidatorStub: EmailValidator;
-  addAccountStub: AddAcount;
+  addAccountStub: AddAccount;
 }
 
 const makeSut = (): SutTypes => {
   const emailValidatorStub = makeEmailValidationStub();
-  const addAccountStub = makeAddAcountStub();
+  const addAccountStub = makeAddAccountStub();
   const sut = new SignupController(emailValidatorStub, addAccountStub);
   return { sut, emailValidatorStub, addAccountStub };
 };
@@ -167,7 +170,7 @@ describe('Signup Controller', () => {
     expect(httpResponse.body).toEqual(new ServerError());
   });
 
-  test('Should call addAcount', async () => {
+  test('Should call AddAccount', async () => {
     const { sut, addAccountStub } = makeSut();
 
     const addSpy = jest.spyOn(addAccountStub, 'add');
@@ -188,7 +191,7 @@ describe('Signup Controller', () => {
     });
   });
 
-  test('Should return 500 if addAcount throws an exception', async () => {
+  test('Should return 500 if AddAccount throws an exception', async () => {
     const { sut, addAccountStub } = makeSut();
 
     jest.spyOn(addAccountStub, 'add').mockImplementation(() => {
