@@ -23,6 +23,7 @@
   "homepage": "https://github.com/guiit/survey_back-end#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "dotenv": "^8.2.0",
     "git-commit-msg-linter": "^3.0.0",
     "mongodb": "^3.6.5",
     "validator": "^13.5.2"
